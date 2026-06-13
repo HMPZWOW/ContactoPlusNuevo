@@ -344,6 +344,8 @@
             Name = "FrmDirectorioTelefonico";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Directorio Telefónico Empresarial";
+            FormClosed += FrmDirectorioTelefonico_FormClosed;
+            Load += FrmDirectorioTelefonico_Load;
             grpDatos.ResumeLayout(false);
             grpDatos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvDirectorio).EndInit();

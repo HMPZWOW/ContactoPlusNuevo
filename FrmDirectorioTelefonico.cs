@@ -1,5 +1,7 @@
 ﻿
 
+using System.Drawing.Text;
+
 namespace ContactosPlus
 {
     public partial class FrmDirectorioTelefonico : Form
@@ -12,36 +14,54 @@ namespace ContactosPlus
         private void btnNuevo_Click(object sender, EventArgs e)
         {
             LimpiarFormulario();
+            List<TextBox> componentes = new List<TextBox>();
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            string nombre = txtNombre.Text.Trim();
-            string apellidos = txtApellidos.Text.Trim();
-            if (nombre.Length > 0)
-            {
-                error.SetError(txtNombre, "");
-            }
-            else
-            {
-                error.SetError(txtNombre, "Ingresa tu nombre");
-            }
 
-            if (apellidos.Length > 0)
-            {
-                error.SetError(txtApellidos, "");
-            }
-            else
-            {
-                error.SetError(txtApellidos, "Ingresa tu apellidos");
-            }
+            foreach (TextBox componente in componentes)
+                validarTextbox(componente, "Campo obligatorio");
+
+           
+        
+
+
+        
+
+
+
+
+            /*
+        validarTextbox(txtNombre,"verifica tu nombre");
+        validarTextbox(txtApellidos, "Verifica tus apellidos");
+        validarTextbox(txtTelefono, "Verifica tu telefono");
+        validarTextbox(txtExtension, "Verifica tu extencion");
+        validarTextbox(txtCargo, "Verifica el cargo");
+        validarTextbox(txtEmpresa, "Verifica la empresa");
+        validarTextbox(txtCorreo, "verifica tu correo");
+        */
+
         }
+
+        private void validarTextbox(TextBox txtComp, string msgError)
+        {
+            string cuadritos = txtComp.Text.Trim();
+
+            if (cuadritos.Length > 0)
+                error.SetError(txtComp, "");
+            else
+                error.SetError(txtComp, msgError);
+        }
+
+
+        /*
          Directorio obj = new Directorio();
         int id =Convert.ToInt32(txtId.Text);
         obj.add(id,nombre,apellidos);
         obj.show()
             MessageBox.Show("texto")
-
+        */
 
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -104,6 +124,24 @@ namespace ContactosPlus
             chkActivo.Checked = true;
 
             txtNombre.Focus();
+        }
+
+        private void FrmDirectorioTelefonico_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            MessageBox.Show("!NOOOOOOOOOOOOOOOOOOOOOOOO MEMORI¡¡¡¡¡¡");
+        }
+
+        private void FrmDirectorioTelefonico_Load(object sender, EventArgs e)
+        {
+
+            componentes.Add(txtNombre);
+            componentes.Add(txtApellidos);
+            componentes.Add(txtTelefono);
+            componentes.Add(txtExtension);
+            componentes.Add(txtCargo);
+            componentes.Add(txtEmpresa);
+            componentes.Add(txtCorreo);
+
         }
     }
 }
