@@ -1,11 +1,14 @@
 ﻿
-
+using ContactosPlus.claseArchivos;
 using System.Drawing.Text;
 
 namespace ContactosPlus
 {
     public partial class FrmDirectorioTelefonico : Form
     {
+          public int total;
+           private clArchivos archivo;
+
         public FrmDirectorioTelefonico()
         {
             InitializeComponent();
@@ -19,7 +22,6 @@ namespace ContactosPlus
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-
             foreach (TextBox componente in componentes)
                 validarTextbox(componente, "Campo obligatorio");
 
@@ -107,6 +109,7 @@ namespace ContactosPlus
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             LimpiarFormulario();
+            this.total = 50;
         }
 
         private void LimpiarFormulario()
@@ -131,6 +134,8 @@ namespace ContactosPlus
             MessageBox.Show("!NOOOOOOOOOOOOOOOOOOOOOOOO MEMORI¡¡¡¡¡¡");
         }
 
+        List<TextBox> componentes = new List<TextBox>();
+
         private void FrmDirectorioTelefonico_Load(object sender, EventArgs e)
         {
 
@@ -142,6 +147,9 @@ namespace ContactosPlus
             componentes.Add(txtEmpresa);
             componentes.Add(txtCorreo);
 
+
+            this.total = 50;
+           this.archivo = new clArchivos("Directorio.txt");
         }
     }
 }
